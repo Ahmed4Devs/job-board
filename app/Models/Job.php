@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+
 class Job
 {
-  public static function all()
-  {
-    return [
-      ['title' => 'Software Engineer', 'salary' => "$3000"],
-      ['title' => 'Graphic Designer', 'salary' => "$1500"],
-    ];
-  }
+    public static function all()
+    {
+        return [
+            ['title' => 'Software Engineer', 'salary' => '$1000'],
+            ['title' => 'Graphic Designer', 'salary' => '$2000'],
+        ];
+    }
 }
