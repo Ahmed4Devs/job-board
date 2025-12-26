@@ -34,4 +34,9 @@ class PostController extends Controller
 
         return redirect('/blog');
     }
+
+    public function delete()
+    {
+        Post::destroy(3);
+    }
 }
