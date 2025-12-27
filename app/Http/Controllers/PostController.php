@@ -9,7 +9,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $data = Post::cursorPaginate(5);
+        $data = Post::paginate(10);
 
         return view('post.index', ['posts' => $data, "pageTitle" => "Blog"]);
     }
@@ -25,12 +25,14 @@ class PostController extends Controller
 
     public function create()
     {
-        $post = Post::create([
-            'title' => 'My find unique post',
-            'body' => 'This is to test find',
-            'author' => 'Ahmed',
-            'published' => true
-        ]);
+        // $post = Post::create([
+        //     'title' => 'My find unique post 1',
+        //     'body' => 'This is to test find',
+        //     'author' => 'Ahmed',
+        //     'published' => true
+        // ]);
+
+        Post::factory(10)->create();
 
         return redirect('/blog');
     }
