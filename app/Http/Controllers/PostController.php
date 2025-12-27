@@ -9,7 +9,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $data = Post::all();
+        $data = Post::cursorPaginate(5);
 
         return view('post.index', ['posts' => $data, "pageTitle" => "Blog"]);
     }
