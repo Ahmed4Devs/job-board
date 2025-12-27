@@ -32,7 +32,7 @@ class PostController extends Controller
         //     'published' => true
         // ]);
 
-        Post::factory(10)->create();
+        Post::factory(1000)->create();
 
         return redirect('/blog');
     }

@@ -15,11 +15,13 @@ class Post extends Model
 
     use HasUuids;
 
-    protected $table = 'post';
+    protected $primaryKey = 'id';
 
     protected $keyType = 'string'; // UUID - universal unique identifier
 
     public  $incrementing = false;
+
+    protected $table = 'post';
 
     protected $fillable = ['title', 'body', 'author', 'published']; // fields can be updated
 
