@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use \Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -9,8 +10,14 @@ use \Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Post extends Model
 {
+    use HasUuids;
+
     protected $table = 'post';
-    //
+
+    protected $keyType = 'string'; // UUID - universal unique identifier
+
+    public  $incrementing = false;
+
     protected $fillable = ['title', 'body', 'author', 'published']; // fields can be updated
 
     protected $guarded = ['id']; // cannot be updated/assigned (readonly)
