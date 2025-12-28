@@ -18,27 +18,20 @@ class PostController extends Controller
     {
         $post = Post::find($id);
 
-        // handle null -> message
-
         return view('post.show', ['post' => $post, "pageTitle" => $post->title]);
     }
 
     public function create()
     {
-        // $post = Post::create([
-        //     'title' => 'My find unique post 1',
-        //     'body' => 'This is to test find',
-        //     'author' => 'Ahmed',
-        //     'published' => true
-        // ]);
+        Post::factory(10)->create();
 
-        Post::factory(1000)->create();
-
-        return redirect('/blog');
+        return response("Created successfully!", 201);
     }
 
-    public function delete()
+    public function delete($id)
     {
-        Post::destroy(3);
+        Post::destroy($id);
+
+        return response("Successfully Deleted", 204);
     }
 }
