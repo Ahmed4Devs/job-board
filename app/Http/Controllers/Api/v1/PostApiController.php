@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
@@ -14,17 +14,16 @@ class PostApiController extends Controller
     public function index()
     {
         $data = Post::paginate(25);
-
         return response($data, 200);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created esource in storage.
      */
     public function store(Request $request)
     {
         $data = Post::create($request->all());
-        return response($data, 201);
+        return response(['data' => $data, 'message' => 'Post created successfully'], 201);
     }
 
     /**
