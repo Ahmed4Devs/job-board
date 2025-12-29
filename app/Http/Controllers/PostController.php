@@ -13,7 +13,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $data = Post::paginate(10);
+        $data = Post::latest()->paginate(10);
 
         return view('post.index', ['posts' => $data, "pageTitle" => "Blog"]);
     }
@@ -31,8 +31,16 @@ class PostController extends Controller
      */
     public function store(BlogPostRequest $request)
     {
-        print_r($request->all());
-        // TODO: this will be completed in the Forms section.
+        $post = new Post();
+
+        $post->title = $request->input('title');
+        $post->author = $request->input('author');
+        $post->body = $request->input('body');
+        $post->published = $request->has('published');
+
+        $post->save();
+
+        return redirect('/blog')->with('success', 'Post created successfully!');
     }
 
     /**
