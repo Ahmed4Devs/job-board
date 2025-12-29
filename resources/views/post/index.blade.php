@@ -12,12 +12,18 @@
     @foreach ($posts as $post)
         <div class="flex justify-between items-center border border-gray-200 px-4 py-6 my-2">
             <div>
-                <h1 class="text-2xl">{{ $post->title }}</h1>
+                <h1 class="text-2xl">
+                    <a href="/blog/{{$post->id}}">{{$post->title}}</a>
+                </h1>
                 <p class="text-xl">{{ $post->author }}</p>
             </div>
             <div>
                 <a href="/blog/{{$post->id}}/edit" class="text-yellow-500 hover:text-gray-500">Edit</a>
-                <button class="text-red-600 hover:text-gray-500">Delete</button>
+                <form method="POST" action="/blog/{{$post->id}}" onsubmit="return confirm('Are you sure?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="text-red-600 hover:text-gray-500">Delete</button>
+                </form>
             </div>
         </div>
     @endforeach
