@@ -58,16 +58,26 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        return view('post.edit', ["pageTitle" => "Blog - Edit Post"]);
+        $post = Post::findOrFail($id);
+
+        return view('post.edit', ["post" => $post,"pageTitle" => "Edit Post: " . $post->title]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(BlogPostRequest $request, string $id)
     {
-        // TODO: this will be completed in the Forms section.
+        $post = Post::findOrFail($id);
 
+        $post->title = $request->input('title');
+        $post->author = $request->input('author');
+        $post->body = $request->input('body');
+        $post->published = $request->has('published');
+
+        $post->save();
+
+        return redirect('/blog')->with('success', 'Post updated successfully!');
     }
 
     /**
